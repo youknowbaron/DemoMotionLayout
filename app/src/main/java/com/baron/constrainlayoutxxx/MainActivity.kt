@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
         ),
         TitleAdapter.TitleItem(
             "7. DrawerLayout Example",
-            "Một con vịt xòe ra hai cái cánh.",
+            "Cũng là vịt nhưng vẫn xòe hai cái cánh.",
             R.layout.fragment_motion_drawer_layout
         )
     )

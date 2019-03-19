@@ -21,7 +21,7 @@ class MotionActivity : AppCompatActivity() {
         setContentView(layout)
         container = findViewById(R.id.motionLayout)
 
-        if (layout == R.layout.fragment_motion_coordinator_layout) {
+        if (layout == R.layout.fragment_motion_coordinator_layout || layout == R.layout.fragment_motion_drawer_layout) {
             container.findViewById<ImageView>(R.id.back).setOnClickListener {
                 onBackPressed()
             }
