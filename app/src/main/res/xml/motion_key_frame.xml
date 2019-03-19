@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+        xmlns:motion="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Transition
+            motion:constraintSetStart="@id/start"
+            motion:constraintSetEnd="@id/end"
+            motion:duration="1000">
+        <OnSwipe
+                motion:touchAnchorId="@+id/textView"
+                motion:touchAnchorSide="bottom"
+                motion:dragDirection="dragDown"/>
+
+        <!--A là điểm bắt đầu
+            B là điểm kết thúc
+            O là trung điểm của A và B
+            Ox có phương trùng với AB, chiều dương hướng về phía A
+            Oy có phương vuông góc với AB, chiều dương hướng về phía bên phải AB-->
+        <KeyFrameSet>
+            <KeyPosition
+                    motion:keyPositionType="pathRelative"
+                    motion:percentY="0.125"
+                    motion:framePosition="50"
+                    motion:target="@id/textView"/>
+        </KeyFrameSet>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    motion:layout_constraintTop_toTopOf="parent"
+                    motion:layout_constraintEnd_toEndOf="parent"
+                    motion:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp">
+            <CustomAttribute
+                    motion:attributeName="textColor"
+                    motion:customColorValue="@color/colorPrimary"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    motion:layout_constraintEnd_toEndOf="parent"
+                    motion:layout_constraintBottom_toBottomOf="parent"
+                    motion:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="8dp">
+            <CustomAttribute
+                    motion:attributeName="textColor"
+                    motion:customColorValue="@color/colorAccent"/>
+        </Constraint>
+
+    </ConstraintSet>
+
+</MotionScene>
