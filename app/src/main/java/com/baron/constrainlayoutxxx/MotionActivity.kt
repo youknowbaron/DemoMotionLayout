@@ -6,6 +6,7 @@ import android.support.annotation.RequiresApi
 import android.support.constraint.motion.MotionLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.ImageView
 import com.baron.constrainlayoutxxx.MainActivity.Companion.LAYOUT_ID
 import com.baron.constrainlayoutxxx.MainActivity.Companion.SHOW_PATH
 
@@ -19,6 +20,12 @@ class MotionActivity : AppCompatActivity() {
         val layout = intent.getIntExtra(LAYOUT_ID, R.layout.fragment_motion_very_basic)
         setContentView(layout)
         container = findViewById(R.id.motionLayout)
+
+        if (layout == R.layout.fragment_motion_coordinator_layout) {
+            container.findViewById<ImageView>(R.id.back).setOnClickListener {
+                onBackPressed()
+            }
+        }
 
         val debugMode = if (intent.getBooleanExtra(SHOW_PATH, false)) {
             MotionLayout.DEBUG_SHOW_PATH
