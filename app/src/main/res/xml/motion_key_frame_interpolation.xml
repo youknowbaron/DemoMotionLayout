@@ -6,7 +6,7 @@
     <Transition
             motion:constraintSetStart="@id/start"
             motion:constraintSetEnd="@id/end"
-            motion:interpolator="anticipate"
+            motion:interpolator="bounce"
             motion:duration="10000">
         <OnSwipe
                 motion:touchAnchorId="@+id/textView"
