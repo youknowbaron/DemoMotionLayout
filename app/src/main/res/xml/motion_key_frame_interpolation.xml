@@ -6,6 +6,7 @@
     <Transition
             motion:constraintSetStart="@id/start"
             motion:constraintSetEnd="@id/end"
+            motion:interpolator="anticipate"
             motion:duration="10000">
         <OnSwipe
                 motion:touchAnchorId="@+id/textView"
@@ -19,21 +20,19 @@
                     android:translationX="50dp"
                     motion:framePosition="100"
                     motion:target="@id/textView"
-                    motion:waveOffset="0"
                     motion:wavePeriod="0"
                     motion:waveShape="sin"/>
             <KeyCycle
                     android:translationX="100dp"
                     motion:framePosition="50"
                     motion:target="@id/textView"
-                    motion:waveOffset="0"
-                    motion:wavePeriod="1"
+                    motion:wavePeriod="3"
+                    motion:waveOffset="3"
                     motion:waveShape="sin"/>
             <KeyCycle
                     android:translationX="50dp"
                     motion:framePosition="0"
                     motion:target="@id/textView"
-                    motion:waveOffset="0"
                     motion:wavePeriod="0"
                     motion:waveShape="sin"/>
             <KeyAttribute

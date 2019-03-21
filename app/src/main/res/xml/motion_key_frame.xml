@@ -6,23 +6,38 @@
     <Transition
             motion:constraintSetStart="@id/start"
             motion:constraintSetEnd="@id/end"
-            motion:duration="1000">
+            motion:duration="5000">
         <OnSwipe
                 motion:touchAnchorId="@+id/textView"
                 motion:touchAnchorSide="bottom"
                 motion:dragDirection="dragDown"/>
 
-        <!--A là điểm bắt đầu
+        <OnClick motion:target="@id/textView"
+                 motion:clickAction="toggle"/>
+
+        <!--****************pathRelative******************
+            A là điểm bắt đầu
             B là điểm kết thúc
             O là trung điểm của A và B
             Ox có phương trùng với AB, chiều dương hướng về phía A
             Oy có phương vuông góc với AB, chiều dương hướng về phía bên phải AB-->
         <KeyFrameSet>
             <KeyPosition
-                    motion:keyPositionType="pathRelative"
-                    motion:percentY="0.125"
+                    motion:keyPositionType="parentRelative"
+                    motion:percentX="0.9"
+                    motion:percentY="0.2"
+                    motion:curveFit="spline"
                     motion:framePosition="50"
                     motion:target="@id/textView"/>
+
+            <KeyPosition
+                    motion:keyPositionType="parentRelative"
+                    motion:percentX="0.9"
+                    motion:percentY="0.4"
+                    motion:curveFit="spline"
+                    motion:framePosition="60"
+                    motion:target="@id/textView"/>
+
         </KeyFrameSet>
 
     </Transition>
@@ -31,13 +46,16 @@
         <Constraint android:id="@id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     motion:layout_constraintTop_toTopOf="parent"
-                    motion:layout_constraintEnd_toEndOf="parent"
                     motion:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="8dp">
             <CustomAttribute
                     motion:attributeName="textColor"
                     motion:customColorValue="@color/colorPrimary"/>
+            <CustomAttribute
+                    motion:attributeName="text"
+                    motion:customStringValue="Một"/>
         </Constraint>
     </ConstraintSet>
 
@@ -52,6 +70,9 @@
             <CustomAttribute
                     motion:attributeName="textColor"
                     motion:customColorValue="@color/colorAccent"/>
+            <CustomAttribute
+                    motion:attributeName="text"
+                    motion:customStringValue="Hết!"/>
         </Constraint>
 
     </ConstraintSet>

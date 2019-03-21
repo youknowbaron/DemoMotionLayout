@@ -4,11 +4,14 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.constraint.motion.MotionLayout
+import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import com.baron.constrainlayoutxxx.MainActivity.Companion.LAYOUT_ID
 import com.baron.constrainlayoutxxx.MainActivity.Companion.SHOW_PATH
+import com.baron.constrainlayoutxxx.adapter.ViewPagerAdapter
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP) // for View#clipToOutline
 class MotionActivity : AppCompatActivity() {
@@ -21,9 +24,22 @@ class MotionActivity : AppCompatActivity() {
         setContentView(layout)
         container = findViewById(R.id.motionLayout)
 
-        if (layout == R.layout.fragment_motion_coordinator_layout || layout == R.layout.fragment_motion_drawer_layout) {
-            container.findViewById<ImageView>(R.id.back).setOnClickListener {
-                onBackPressed()
+        when (layout) {
+            R.layout.fragment_motion_coordinator_layout -> {
+                container.findViewById<ImageView>(R.id.back).setOnClickListener {
+                    onBackPressed()
+                }
+            }
+            R.layout.fragment_motion_view_pager -> {
+                val adapter = ViewPagerAdapter(supportFragmentManager)
+                adapter.addPage("Page 1", R.layout.fragment_page)
+                adapter.addPage("Page 2", R.layout.fragment_page)
+                adapter.addPage("Page 3", R.layout.fragment_page)
+                val pager = findViewById<ViewPager>(R.id.pager)
+                val tabs = findViewById<TabLayout>(R.id.tabs)
+                pager.adapter = adapter
+                tabs.setupWithViewPager(pager)
+                pager.addOnPageChangeListener(container as ViewPager.OnPageChangeListener)
             }
         }
 
@@ -34,5 +50,14 @@ class MotionActivity : AppCompatActivity() {
         }
 
         (container as? MotionLayout)?.setDebugMode(debugMode)
+    }
+
+    fun changeState(v: View?) {
+        val motionLayout = container as? MotionLayout ?: return
+        if (motionLayout.progress > 0.5f) {
+            motionLayout.transitionToStart()
+        } else {
+            motionLayout.transitionToEnd()
+        }
     }
 }

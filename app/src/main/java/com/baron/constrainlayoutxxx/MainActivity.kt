@@ -48,6 +48,16 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
             "7. DrawerLayout Example",
             "Cũng là vịt nhưng vẫn xòe hai cái cánh.",
             R.layout.fragment_motion_drawer_layout
+        ),
+        TitleAdapter.TitleItem(
+            "8. ViewPager Example",
+            "Đua xe với cô không?",
+            R.layout.fragment_motion_view_pager
+        ),
+        TitleAdapter.TitleItem(
+            "9. Complex Motion Example",
+            ".",
+            R.layout.fragment_motion_reveal
         )
     )
 
@@ -60,6 +70,7 @@ class MainActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener
             setHasFixedSize(true)
             adapter = this@MainActivity.adapter
         }
+
         showPaths.setOnCheckedChangeListener(this)
         showPaths.isChecked = true
     }

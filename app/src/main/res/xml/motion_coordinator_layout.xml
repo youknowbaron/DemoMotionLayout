@@ -26,7 +26,7 @@
             <KeyAttribute
                     motion:target="@id/back"
                     motion:framePosition="100"
-                    android:rotation="900"/>
+                    android:rotation="360"/>
         </KeyFrameSet>
 
     </Transition>
